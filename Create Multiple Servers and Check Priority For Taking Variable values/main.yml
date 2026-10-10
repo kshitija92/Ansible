@@ -1,0 +1,20 @@
+---
+- name: Ansible variable precedence practical
+  hosts: backend
+  gather_facts: false
+
+  vars:
+    app_version: "5.0"
+
+  tasks:
+    - name: Display selected version
+      ansible.builtin.debug:
+        msg: "Host={{ inventory_hostname }}, Version={{ app_version }}"
+
+    - name: Display application name
+      ansible.builtin.debug:
+        msg: "Application={{ app_name | default('not defined') }}"
+
+    - name: Display environment
+      ansible.builtin.debug:
+        msg: "Environment={{ environment | default('not defined') }}"
