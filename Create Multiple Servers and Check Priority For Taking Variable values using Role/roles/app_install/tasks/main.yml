@@ -1,0 +1,21 @@
+---
+- name: Display selected variables
+  ansible.builtin.debug:
+    msg: "Host={{ inventory_hostname }}, Server={{ server_name | default('not defined') }}, Version={{ app_version }}"
+
+- name: Install Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+  become: true
+
+- name: Check installed Nginx version
+  ansible.builtin.command: nginx -v
+  register: nginx_result
+  changed_when: false
+  become: true
+
+- name: Display installed version
+  ansible.builtin.debug:
+    msg: "{{ nginx_result.stderr }}"

@@ -1,0 +1,4 @@
+---
+app_version: "1.24"
+app_name: "nginx"
+environment: "common"

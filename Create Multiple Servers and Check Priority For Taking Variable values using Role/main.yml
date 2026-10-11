@@ -1,0 +1,7 @@
+---
+- name: Ansible variable precedence practical
+  hosts: backend
+  gather_facts: false
+
+  roles:
+    - app_install
